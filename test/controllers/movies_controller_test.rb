@@ -25,6 +25,11 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
 
     get movies_url
     assert_response :success
+    assert_select 'ul.movies' do
+      assert_select 'li.movie'
+    end
+
+    assert_select 'a.new-movie'
   end
 
   def add_movies

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to('New Movie', new_movie_url, :class => 'btn btn-primary new-movie') %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="nav nav-pills nav-stacked movies">
+      <% @movies.each do |movie| %>
+          <li class="movie">
+            <%= link_to(movie.title, movie_path(movie.id)) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="jumbotron">
+      <h1>Please select or create a new movie.</h1>
+    </div>
+  </div>
+</div>

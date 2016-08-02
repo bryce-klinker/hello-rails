@@ -4,6 +4,7 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
   test 'should get new movie' do
     get new_movie_url
     assert_response :success
+    assert_select 'form'
   end
 
   test 'should create new movie' do
@@ -18,6 +19,15 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
 
     get movie_path(Movie.last)
     assert_response :success
+    assert_select 'a.edit-movie'
+  end
+
+  test 'should start editing movie' do
+    @movie = Movie.first
+
+    get edit_movie_path(@movie)
+    assert_response :success
+    assert_select 'form'
   end
 
   test 'should get all movies' do
@@ -30,6 +40,16 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_select 'a.new-movie'
+  end
+
+  test 'should save updated movie' do
+    movie = Movie.first
+    patch movie_url(movie), params: { movie: { title: 'not the same' } }
+
+    assert_redirected_to movie_path(movie)
+
+    movie.reload
+    assert_equal 'not the same', movie.title
   end
 
   def add_movies

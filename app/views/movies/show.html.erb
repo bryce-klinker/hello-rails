@@ -1,1 +1,21 @@
-<h3><%= @movie.title %></h3>
+<div class="row" >
+  <div class="col-sm-12">
+    <h3><%= @movie.title %></h3>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to('Edit', edit_movie_url, :class => 'btn btn-primary edit-movie') %>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to('Back to Movies', movies_url, :class => 'btn btn-default') %>
+  </div>
+</div>
